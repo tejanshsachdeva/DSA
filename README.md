@@ -1,3 +1,4 @@
-# DS-Algo
-Will be uploading most common data structures and algo for easy usage during contests. 
-This repository is for my personal use.
+Hello,
+Tejansh this side, an aspring developer and coder from Shiv Nadar University
+In this repository, I will be adding all the Data Structures and their codes in C++ which I'll be practising over a perisod of time. 
+
