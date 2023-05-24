@@ -21,7 +21,7 @@ class Solution {
         for(int i = 0;i<V;i++) {
             for(int j = 0;j<V;j++) {
                 // self nodes are not considered
-                if(adj[i][j] == 1 && i != j) {
+                if(adj[i][j] == 1 && i != j) {  //agar connected hai toh adj list me dono element ke liye update krde
                     adjLs[i].push_back(j); 
                     adjLs[j].push_back(i); 
                 }
@@ -34,7 +34,7 @@ class Solution {
             if(!vis[i]) {
                 // counter to count the number of provinces 
                 cnt++;
-               dfs(i, adjLs, vis); 
+               dfs(i, adjLs, vis);  //vo bas apne hi province me dfs kr payega. 
             }
         }
         return cnt; 

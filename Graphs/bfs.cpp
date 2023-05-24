@@ -1,32 +1,43 @@
+/*
+Time Complexity: O(N) + O(2E), Where N = Nodes, 2E is for total degrees as we traverse all adjacent nodes.
+Space Complexity: O(3N) ~ O(N), Space for queue data structure visited array and an adjacency list
+*/
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
-  private: 
-    void dfs(int node, vector<int> adj[], int vis[], vector<int> &ls) {
-        vis[node] = 1; 
-        ls.push_back(node); 
-        // traverse all its neighbours
-        for(auto it : adj[node]) {
-            // if the neighbour is not visited
-            if(!vis[it]) {
-                dfs(it, adj, vis, ls); 
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        int vis[V] = {0}; 
+        vis[0] = 1; 
+        queue<int> q;
+        // push the initial starting node 
+        q.push(0);   
+        vector<int> bfs; // to store the bfs traversal
+        // iterate till the queue is empty 
+        while(!q.empty()) {
+           // get the topmost element in the queue 
+            int node = q.front(); 
+            q.pop(); 
+            bfs.push_back(node);  //push topmost into bfs
+            // traverse for all its neighbours and add into queue
+            for(auto it : adj[node]) {
+                // if the neighbour has previously not been visited, 
+                // store in Q and mark as visited 
+                if(!vis[it]) {
+                    vis[it] = 1; 
+                    q.push(it); 
+                }
             }
         }
-    }
-  public:
-    // Function to return a list containing the DFS traversal of the graph. 
-    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
-        int vis[V] = {0}; 
-        int start = 0;
-        // create a list to store dfs
-        vector<int> ls; 
-        // call dfs for starting node
-        dfs(start, adj, vis, ls); 
-        return ls; 
+        return bfs; 
     }
 };
-
+   
+//input stuff
 void addEdge(vector <int> adj[], int u, int v) {
     adj[u].push_back(v);
     adj[v].push_back(u);
@@ -40,18 +51,15 @@ void printAns(vector <int> &ans) {
 
 int main() 
 {
-    vector <int> adj[5];
-    //take input from user
-
+    vector <int> adj[6];  //this is 2d adj list
     
-    
-    addEdge(adj, 0, 2);
-    addEdge(adj, 2, 4);
     addEdge(adj, 0, 1);
-    addEdge(adj, 0, 3);
+    addEdge(adj, 1, 2);
+    addEdge(adj, 1, 3);
+    addEdge(adj, 0, 4);
 
     Solution obj;
-    vector <int> ans = obj.dfsOfGraph(5, adj);
+    vector <int> ans = obj.bfsOfGraph(5, adj);
     printAns(ans);
 
     return 0;
