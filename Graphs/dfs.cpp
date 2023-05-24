@@ -15,7 +15,7 @@ class Solution {
         }
     }
   public:
-    // Function to return a list containing the DFS traversal of the graph. 
+    // Function to return a list containing the DFS traversal of the graph.
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         int vis[V] = {0}; 
         int start = 0;
@@ -41,9 +41,6 @@ void printAns(vector <int> &ans) {
 int main() 
 {
     vector <int> adj[5];
-    //take input from user
-
-    
     
     addEdge(adj, 0, 2);
     addEdge(adj, 2, 4);
