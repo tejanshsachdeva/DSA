@@ -19,12 +19,12 @@ class Solution
 	    // <coordinates, steps>
 	    queue<pair<pair<int,int>, int>> q; 
 	    // traverse the matrix
-	    for(int i = 0;i<n;i++) {
+	    for(int i = 0;i<n;i++) {  //sorting out one stuff pehle, starting point
 	        for(int j = 0;j<m;j++) {
 	            // start BFS if cell contains 1
 	            if(grid[i][j] == 1) {
-	                q.push({{i,j}, 0}); 
-	                vis[i][j] = 1; 
+	                q.push({{i,j}, 0});   //push in queue the start indexes, multi start bfs
+	                vis[i][j] = 1;   //mark as visited
 	            }
 	            else {
 	                // mark unvisited 
@@ -38,18 +38,18 @@ class Solution
 	    
 	    // traverse till queue becomes empty
 	    while(!q.empty()) {
-	        int row = q.front().first.first; 
-	        int col = q.front().first.second; 
+	        int row = q.front().first.first;   //for top element in queue
+	        int col = q.front().first.second;   //extract its index and steps
 	        int steps = q.front().second; 
 	        q.pop(); 
 	        dist[row][col] = steps; 
 	        // for all 4 neighbours
-	        for(int i = 0;i<4;i++) {
-	            int nrow = row + delrow[i]; 
+	        for(int i = 0;i<4;i++) {                //move to its element in 4 direction
+	            int nrow = row + delrow[i];  
 	            int ncol = col + delcol[i]; 
 	            // check for valid unvisited cell
 	            if(nrow >= 0 && nrow < n && ncol >= 0 && ncol < m 
-	            && vis[nrow][ncol] == 0) {
+	            && vis[nrow][ncol] == 0) {  //check if valid index(not outside matrix) and unvisited
 	                vis[nrow][ncol] = 1; 
 	                q.push({{nrow, ncol}, steps+1});  
 	            }
