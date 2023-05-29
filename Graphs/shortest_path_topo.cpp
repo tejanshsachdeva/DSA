@@ -14,7 +14,7 @@ class Solution {
           topoSort(v, adj, vis, st);
         }
       }
-      st.push(node);
+      st.push(node);   //pushing all elements in stack acc to topo order
     }
   public:
     vector < int > shortestPath(int N, int M, vector < vector < int >> & edges) {
@@ -25,13 +25,11 @@ class Solution {
         int u = edges[i][0];
         int v = edges[i][1];
         int wt = edges[i][2];
-        adj[u].push_back({v, wt}); 
+        adj[u].push_back({v, wt});   //creating adj list in form of pair w. weight
       }
       // A visited array is created with initially 
       // all the nodes marked as unvisited (0).
-      int vis[N] = {
-        0
-      };
+      int vis[N] = {0};
       //Now, we perform topo sort using DFS technique 
       //and store the result in the stack st.
       stack < int > st;
@@ -45,26 +43,26 @@ class Solution {
 
       vector < int > dist(N);
       for (int i = 0; i < N; i++) {
-        dist[i] = 1e9;
+        dist[i] = 1e9;   //assigning infinity
       }
 
-      dist[0] = 0;
+      dist[0] = 0;  //for start node, topo ka first
       while (!st.empty()) {
-        int node = st.top();
+        int node = st.top();  //top of stack
         st.pop();
 
-        for (auto it: adj[node]) {
+        for (auto it: adj[node]) {  //traversing adjacent neighbours
           int v = it.first;
-          int wt = it.second;
+          int wt = it.second;  //wt of that edge from node to adj node
 
-          if (dist[node] + wt < dist[v]) {
-            dist[v] = wt + dist[node];
+          if (dist[node] + wt < dist[v]) {  //agar node tak dist + wt kam hai what in dist matrix
+            dist[v] = wt + dist[node];  //update it
           }
         }
       }
 
       for (int i = 0; i < N; i++) {
-        if (dist[i] == 1e9) dist[i] = -1;
+        if (dist[i] == 1e9) dist[i] = -1;  
       }
       return dist;
     }
