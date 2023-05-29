@@ -22,7 +22,7 @@ class Solution {
       //We create a graph first in the form of an adjacency list.
       vector < pair < int, int >> adj[N];
       for (int i = 0; i < M; i++) {
-        int u = edges[i][0];
+        int u = edges[i][0];  //thi edge matrix has all stuff stored
         int v = edges[i][1];
         int wt = edges[i][2];
         adj[u].push_back({v, wt});   //creating adj list in form of pair w. weight
