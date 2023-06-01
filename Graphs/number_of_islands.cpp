@@ -10,7 +10,7 @@ class Solution {
       // push the node in queue
       q.push({row, col}); 
       int n = grid.size(); 
-      int m = grid[0].size(); 
+      int m = grid[0].size();   
       
       // until the queue becomes empty
       while(!q.empty()) {
@@ -18,7 +18,7 @@ class Solution {
           int col = q.front().second; 
           q.pop(); 
           
-          // traverse in the neighbours and mark them if its a land 
+          // traverse in the neighbours and mark them if its a land   //this in all 8 dirn
           for(int delrow = -1; delrow<=1;delrow++) {
               for(int delcol = -1; delcol <= 1; delcol++) {
                   int nrow = row + delrow; 
