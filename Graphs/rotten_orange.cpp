@@ -5,68 +5,62 @@ using namespace std;
 class Solution {
   public:
     //Function to find minimum time required to rot all oranges. 
-    int orangesRotting(vector < vector < int >> & grid) {
-      // figure out the grid size
-      int n = grid.size();
-      int m = grid[0].size();
+    int orangesRotting(vector<vector<int>>& grid) {
+        if(grid.empty())
+         return 0;
 
-      // store {{row, column}, time}
-      queue < pair < pair < int, int > , int >> q;
-      int vis[n][m];
-      int cntFresh = 0;
-      for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-          // if cell contains rotten orange
-          if (grid[i][j] == 2) {
-            q.push({{i, j}, 0});   //push in queue
-            // mark as visited (rotten) in visited array
-            vis[i][j] = 2;
-          }
-          // if not rotten
-          else {
-            vis[i][j] = 0;  //0 indicates not rotten
-          }
-          // count fresh oranges
-          if (grid[i][j] == 1) cntFresh++;  //count fresh oranges in same loop
-        }
-      }
+         int m=grid.size();
+         int n=grid[0].size();
+         int total=0;
+         int k=0;
+         int count=0;
+         int days=0;
 
-      int tm = 0;
-      // delta row and delta column
-      int drow[] = {-1, 0, +1, 0};
-      int dcol[] = {0, 1, 0, -1}; 
-      int cnt = 0;
+         queue<pair<int,int>>rotten;
 
-      // bfs traversal (until the queue becomes empty)
-      while (!q.empty()) {
-        int r = q.front().first.first;
-        int c = q.front().first.second;
-        int t = q.front().second;
-        tm = max(tm, t);  //everytime we extract t from new element and compare with tm
-        q.pop();
-        // exactly 4 neighbours 
-        for (int i = 0; i < 4; i++) {
-          // neighbouring row and column
-          int nrow = r + drow[i];
-          int ncol = c + dcol[i];
-          // check for valid cell and 
-          // then for unvisited fresh orange  //push the surrounding oranges in queue
-          if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m &&
-            vis[nrow][ncol] == 0 && grid[nrow][ncol] == 1) {
-            // push in queue with timer increased
-             q.push({{nrow, ncol}, t + 1}); 
-            // mark as rotten
-            vis[nrow][ncol] = 2;
-            cnt++;
-          }
-        }
-      }
+         for(int i=0;i<m;i++){
+             for(int j=0;j<n;j++)
+             {
+                 if(grid[i][j]==2)
+                 rotten.push({i,j});
 
-      // if all oranges are not rotten
-      if (cnt != cntFresh) return -1;
+                 if(grid[i][j]!=0)
+                 total++;
+             }
+         }
 
-      return tm;
+        int delRow[4] = {0, 0, 1, -1};
+        int delCol[4] = {1, -1, 0, 0};
 
+         while(!rotten.empty()){
+             k=rotten.size();
+             count=count+k;
+
+             while(k--){
+                 int row=rotten.front().first;
+                 int col=rotten.front().second;
+                 rotten.pop();
+
+                 for(int i=0;i<4;i++){
+                     int nRow=row + delRow[i];
+                     int nCol=col + delCol[i];
+
+                     if(nRow >=0 && nRow<m && nCol>=0 && nCol<n && grid[nRow][nCol]==1){
+                         grid[nRow][nCol]=2;
+                         rotten.push({nRow,nCol});
+                     }
+
+                 }
+             }
+             if(!rotten.empty())
+             days++;
+         }
+
+         if(total==count)
+         return days;
+         else
+         return -1;
+        
     }
 };
 
