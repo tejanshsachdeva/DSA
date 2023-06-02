@@ -56,3 +56,39 @@ int main(){
 	return 0;
 }
 //new code
+
+/*Flood Fill BFS
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int n = image.size();
+        int m = image[0].size(); 
+
+        int iniColor = image[sr][sc];   //stores ini color
+        vector<vector<int>> ans = image;  //copy image to ans vector
+        // delta row and delta column for neighbours
+        int delRow[] = {-1, 0, +1, 0};
+        int delCol[] = {0, +1, 0, -1}; 
+        queue<pair<int,int>> q;
+        ans[sr][sc]=color;
+        q.push({sr,sc});
+
+        while(!q.empty()){
+            int row=q.front().first;
+            int col=q.front().second;
+            q.pop();
+
+            for(int i=0;i<4;i++){
+                int newRow = row + delRow[i];
+                int newCol = col + delCol[i];
+
+                if(newRow>=0 && newRow<n && newCol>=0 && newCol<m && image[newRow][newCol]==iniColor && ans[newRow][newCol]!=color){
+                    q.push({newRow,newCol});
+                    ans[newRow][newCol]=color;
+                }
+            }
+        }
+return ans;
+
+    }
+
+
+*/
