@@ -31,7 +31,7 @@ void insertNode(Node* &tail, int element, int d) {
     if(tail == NULL) {
         Node* newNode = new Node(d);
         tail = newNode;
-        newNode -> next = newNode;
+        newNode -> next = newNode;  //points to self
     }
     else{
         //non-empty list
@@ -39,13 +39,13 @@ void insertNode(Node* &tail, int element, int d) {
 
         Node* curr = tail;
 
-        while(curr->data != element) {
+        while(curr->data != element) {  //move till the element after which we want to insert
             curr = curr -> next;
         }
         
         //element found -> curr is representing element wala node
-        Node* temp = new Node(d);
-        temp -> next = curr -> next;
+        Node* temp = new Node(d); //create new node
+        temp -> next = curr -> next;  //points inserted node to aage wala node 
         curr -> next = temp;
 
     }
@@ -97,7 +97,7 @@ void deleteNode(Node* &tail, int value) {
         }
 
         //>=2 Node linked list
-        else if(tail == curr ) {
+        else if(tail == curr ) {  //last wala deletion
             tail = prev;
         }
 
