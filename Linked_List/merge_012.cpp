@@ -19,21 +19,21 @@ void insertAtTail(Node* &tail, Node* curr) {
 
 Node* sortList(Node* head)
 {
-    Node* zeroHead = new Node(-1);
+    Node* zeroHead = new Node(-1);  //points to dummy node now
     Node* zeroTail = zeroHead;
     Node* oneHead = new Node(-1);
     Node* oneTail = oneHead;
     Node* twoHead = new Node(-1);
     Node* twoTail = twoHead;
 
-    Node* curr = head;
+    Node* curr = head;   //traverse the current list of 0,1,2
 
     // create separate list 0s, 1s and 2s
-    while (curr != NULL) {
+    while (curr != NULL) {  //till end of it
         int value = curr->data;
 
         if (value == 0) {
-            insertAtTail(zeroTail, curr);
+            insertAtTail(zeroTail, curr);  //add element in 0 specific list
         }
         else if (value == 1) {
             insertAtTail(oneTail, curr);
@@ -42,24 +42,24 @@ Node* sortList(Node* head)
             insertAtTail(twoTail, curr);
         }
         curr = curr->next;
-    }
+    }   //till here all lists are created
 
     // merge 3 sublists
 
     // 1s list not empty
-    if (oneHead->next != NULL) {
-        zeroTail->next = oneHead->next;
+    if (oneHead->next != NULL) {    //agar 1's wali list khaali nhi hai, toh merge them
+        zeroTail->next = oneHead->next;  //zero list ki tail pe 1's list ka head laga do
     }
     else {
         // 1s list -> empty
-        zeroTail->next = twoHead->next;
+        zeroTail->next = twoHead->next;  //agar khaali hai toh 0 ko seedha 2 se join krdo
     }
 
-    oneTail->next = twoHead->next;
-    twoTail->next = NULL;
+    oneTail->next = twoHead->next;     //1 ki tail pe 2 ki list laga do
+    twoTail->next = NULL;       //point 2's tail to null
 
     // setup head
-    head = zeroHead->next;
+    head = zeroHead->next;  //0 ki dummy ka next is head
 
     // delete dummy nodes
     delete zeroHead;
