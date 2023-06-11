@@ -37,20 +37,7 @@ class Solution
         }cout << endl;
     }
 
-    void printRandom(Node* head) {
-        while(head != NULL) {
-            cout << " head data: " << head->data <<" ";
-            if(head ->arb != NULL) {
-                cout << " head random data" << head -> arb ->data;
-            }
-            else
-            {
-                cout << " head random data: NULL";
-            }
-            head = head -> next;
-            cout << endl;
-        }
-    }
+
 
     public:
     Node *copyList(Node *head)
@@ -114,6 +101,21 @@ class Solution
 
         // step 5 answer return
         return cloneHead;
+    }
+
+        void printRandom(Node* head) {
+        while(head != NULL) {
+            cout << " head data: " << head->data <<" ";
+            if(head ->arb != NULL) {
+                cout << " head random data" << head -> arb ->data;
+            }
+            else
+            {
+                cout << " head random data: NULL";
+            }
+            head = head -> next;
+            cout << endl;
+        }
     }
 };
 
