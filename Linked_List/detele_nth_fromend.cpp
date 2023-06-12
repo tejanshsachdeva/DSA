@@ -14,17 +14,17 @@ public:
         ListNode* fast = start;
         ListNode* slow = start;
 
-        for (int i = 1; i <= n; ++i)
+        for (int i = 1; i <= n; ++i)  //fast ko n tak chalao
             fast = fast->next;
 
-        while (fast->next != nullptr) {
+        while (fast->next != nullptr) {  //fast and slow ko ek sath chalao 
             fast = fast->next;
             slow = slow->next;
         }
 
-        slow->next = slow->next->next;
+        slow->next = slow->next->next;  //delete krdo
 
-        return start->next;
+        return start->next;   //return the head, start kept track of the head
     }
 };
 
