@@ -1,3 +1,5 @@
+//nai aaya smj me
+
 #include<bits/stdc++.h>
 
 using namespace std;
