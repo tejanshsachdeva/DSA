@@ -1,3 +1,5 @@
+//bit sceptical 
+
 #include <iostream>
 
 #include <vector>
@@ -6,14 +8,14 @@ using namespace std;
 
 bool isValid(vector < vector < char >> & board, int row, int col, char c) {
   for (int i = 0; i < 9; i++) {
-    if (board[i][col] == c)
+    if (board[i][col] == c)  //check for same element in same row
       return false;
 
-    if (board[row][i] == c)
+    if (board[row][i] == c)  //check for same element in same col
       return false;
 
-    if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c)
-      return false;
+    if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c)  //check in same box, in single loop from 0-9
+      return false;                                                //row/3 gives the box number, i/3 gives the row number in that box
   }
   return true;
 }
@@ -21,19 +23,19 @@ bool isValid(vector < vector < char >> & board, int row, int col, char c) {
 bool solveSudoku(vector < vector < char >> & board) {
   for (int i = 0; i < board.size(); i++) {
     for (int j = 0; j < board[0].size(); j++) {
-      if (board[i][j] == '.') {
-        for (char c = '1'; c <= '9'; c++) {
-          if (isValid(board, i, j, c)) {
-            board[i][j] = c;
+      if (board[i][j] == '.') {   //if empty elememt is there
+        for (char c = '1'; c <= '9'; c++) {  //check for all 1-9
+          if (isValid(board, i, j, c)) {   //if valid, then place the element
+            board[i][j] = c;  //place the element
 
-            if (solveSudoku(board))
+            if (solveSudoku(board))  //move to next element, if true, then return true
               return true;
             else
-              board[i][j] = '.';
+              board[i][j] = '.'; //but if it return false, like not valid, then backtrack and place '.' again
           }
         }
 
-        return false;
+        return false;  //if we cannot place any element, then return false
       }
     }
   }
