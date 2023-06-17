@@ -6,14 +6,15 @@ void findCombination(int ind, int target, vector < int > & arr, vector < vector 
     ans.push_back(ds);
     return;
   }
-  for (int i = ind; i < arr.size(); i++) {
-    if (i > ind && arr[i] == arr[i - 1]) continue;
-    if (arr[i] > target) break;
-    ds.push_back(arr[i]);
-    findCombination(i + 1, target - arr[i], arr, ans, ds);
-    ds.pop_back();
+  for (int i = ind; i < arr.size(); i++) {  //from ind to arr.size()
+    if (i > ind && arr[i] == arr[i - 1]) continue;  //if duplicate then move to next index
+    if (arr[i] > target) break; //not valid
+    ds.push_back(arr[i]);  //push into array
+    findCombination(i + 1, target - arr[i], arr, ans, ds); //update index and target
+    ds.pop_back();  //pop and backtrack
   }
 }
+
 vector < vector < int >> combinationSum2(vector < int > & candidates, int target) {
   sort(candidates.begin(), candidates.end());
   vector < vector < int >> ans;
@@ -21,6 +22,7 @@ vector < vector < int >> combinationSum2(vector < int > & candidates, int target
   findCombination(0, target, candidates, ans, ds);
   return ans;
 }
+
 int main() {
   vector<int> v{10,1,2,7,6,1,5};
   vector < vector < int >> comb = combinationSum2(v, 8);
