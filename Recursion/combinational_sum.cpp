@@ -3,7 +3,8 @@
 using namespace std;
 class Solution {
   public:
-    void findCombination(int ind, int target, vector < int > & arr, vector < vector < int >> & ans, vector < int > & ds) {
+    void findCombination(int ind, int target, vector < int > & arr, vector < vector < int >> & ans, vector < int > & ds) 
+    {
       if (ind == arr.size()) {
         if (target == 0) {
           ans.push_back(ds);
@@ -11,13 +12,13 @@ class Solution {
         return;
       }
       // pick up the element 
-      if (arr[ind] <= target) {
-        ds.push_back(arr[ind]);
-        findCombination(ind, target - arr[ind], arr, ans, ds);
-        ds.pop_back();
+      if (arr[ind] <= target) { //agar target se chotu hai
+        ds.push_back(arr[ind]); //push kar and pick kr
+        findCombination(ind, target - arr[ind], arr, ans, ds);  //target kam ho gaya
+        ds.pop_back(); //pop karke backtrack kar
       }
 
-      findCombination(ind + 1, target, arr, ans, ds);
+      findCombination(ind + 1, target, arr, ans, ds); //uodate index
 
     }
   public:
