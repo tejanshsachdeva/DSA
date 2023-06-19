@@ -5,18 +5,18 @@ class Solution {
 private:
     vector<int> nextSmallerElement(vector<int> arr, int n) {
         stack<int> s;
-        s.push(-1);
+        s.push(-1);  //stack storing indexes now
         vector<int> ans(n);
 
-        for(int i=n-1; i>=0 ; i--) {
-            int curr = arr[i];
-            while(s.top() != -1 && arr[s.top()] >= curr)
+        for(int i=n-1; i>=0 ; i--) {  //ulta chale
+            int curr = arr[i];  //curr store kara, as last abhi
+            while(s.top() != -1 && arr[s.top()] >= curr)  //pop karo till we get minimum element of height
             {
-                s.pop();
+                s.pop();  //pop the element till we get the minimum element
             }
             //ans is stack ka top
-            ans[i] = s.top();
-            s.push(i);
+            ans[i] = s.top();  //push the index of the minimum element in ans array
+            s.push(i);   //push the index of the current element for other elements
         }
         return ans;
     }
@@ -53,12 +53,12 @@ public:
         for(int i=0; i<n; i++) {
             int l = heights[i];
             
-            if(next[i] == -1) {
-                next[i] = n;
+            if(next[i] == -1) {  //just in case height of all elements are equal,it will return -1 na
+                next[i] = n;  //so we store n
             }
-             int b = next[i] - prev[i] - 1;
+             int b = next[i] - prev[i] - 1;  //we calc the area using diff of indexes
             int newArea = l*b;
-            area = max(area, newArea);
+            area = max(area, newArea);  //store only the max area
         }
         return area;
     }
