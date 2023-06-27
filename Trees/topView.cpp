@@ -1,10 +1,20 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 #include <queue>
+#include <map>
 using namespace std;
 
-struct Node {
-  int data;
-  struct node * left, * right;
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int value) {
+        data = value;
+        left = nullptr;
+        right = nullptr;
+    }
 };
 
 class Solution
