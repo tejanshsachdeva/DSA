@@ -226,12 +226,12 @@ void removeLoop(Node* head) {
 int main() {
     
     //created a new node
-    Node* node1 = new Node(10);
-    //cout << node1 -> data << endl;
-   // cout << node1 -> next << endl;
+    Node* node1 = new Node(10); //create a pointer of Node* type which points to a new node
+    //cout << node1 -> data << endl;  //10
+   // cout << node1 -> next << endl;//null
     
     //head pointed to node1
-    Node* head = node1; 
+    Node* head = node1;    //head is a pointer of Node* type
     Node* tail = node1;
     //print(head);
 
