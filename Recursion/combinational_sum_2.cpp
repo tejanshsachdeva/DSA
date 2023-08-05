@@ -7,7 +7,7 @@ void findCombination(int ind, int target, vector < int > & arr, vector < vector 
     return;
   }
   for (int i = ind; i < arr.size(); i++) {  //from ind to arr.size()
-    if (i > ind && arr[i] == arr[i - 1]) continue;  //if duplicate then move to next index
+    if (i > ind && arr[i] == arr[i - 1]) continue;  //if duplicate then move to next index  //ek baar toh exec ho jayega
     if (arr[i] > target) break; //not valid
     ds.push_back(arr[i]);  //push into array
     findCombination(i + 1, target - arr[i], arr, ans, ds); //update index and target

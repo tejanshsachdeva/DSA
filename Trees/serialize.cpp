@@ -22,39 +22,40 @@ public:
     }
 
     // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
-        if(data.size() == 0) return NULL; 
-        stringstream s(data);
-        string str; 
-        getline(s, str, ',');
-        TreeNode *root = new TreeNode(stoi(str));
-        queue<TreeNode*> q; 
-        q.push(root); 
-        while(!q.empty()) {
-            
-            TreeNode *node = q.front(); 
-            q.pop(); 
-            
-            getline(s, str, ',');
-            if(str == "#") {
-                node->left = NULL; 
-            }
-            else {
-                TreeNode* leftNode = new TreeNode(stoi(str)); 
-                node->left = leftNode; 
-                q.push(leftNode); 
-            }
-            
-            getline(s, str, ',');
-            if(str == "#") {
-                node->right = NULL; 
-            }
-            else {
-                TreeNode* rightNode = new TreeNode(stoi(str)); 
-                node->right = rightNode;
-                q.push(rightNode); 
-            }
-        }
-        return root; 
+   TreeNode* deserialize(string data) {
+    if (data.empty()) {
+        return nullptr;
     }
+    
+    stringstream ss(data);
+    string str;
+    getline(ss, str, ',');
+    
+    TreeNode* root = new TreeNode(stoi(str));
+    queue<TreeNode*> q;
+    q.push(root);
+    
+    while (!q.empty()) {
+        TreeNode* node = q.front();
+        q.pop();
+        
+        if (!getline(ss, str, ',')) {
+            break;
+        }
+        if (str != "#") {
+            node->left = new TreeNode(stoi(str));
+            q.push(node->left);
+        }
+        
+        if (!getline(ss, str, ',')) {
+            break;
+        }
+        if (str != "#") {
+            node->right = new TreeNode(stoi(str));
+            q.push(node->right);
+        }
+    }
+    
+    return root;
+}
 };
