@@ -3,6 +3,11 @@ Time Complexity: O(N) + O(2E), Where N = Nodes, 2E is for total degrees as we tr
 Space Complexity: O(3N) ~ O(N), Space for queue data structure visited array and an adjacency list
 */
 
+// The time complexity you've mentioned, O(N) + O(2E), is essentially the same as O(V + E) that I mentioned earlier. Here's why:
+// - O(N): This represents the time complexity for visiting all nodes (vertices) in the graph, which is similar to O(V).
+// - O(2E): This represents the time complexity for visiting all edges in the graph. Each edge is connected to two nodes, hence the factor of 2. However, in Big O notation, we typically ignore constant factors, so this is equivalent to O(E).
+// So, the time complexity O(N) + O(2E) simplifies to O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph. This is the standard time complexity for Breadth-First Search (BFS) using a queue.
+
 
 #include <bits/stdc++.h>
 using namespace std;
