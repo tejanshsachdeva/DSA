@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/AllMyCodes/DSA/dm",
-      "program": "c:/AllMyCodes/DSA/dm/build/Debug/outDebug",
+      "cwd": "c:/AllMyCodes/DSA/Linked_List",
+      "program": "c:/AllMyCodes/DSA/Linked_List/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
