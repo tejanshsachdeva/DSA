@@ -11,29 +11,26 @@ class Solution {
   public:
     // Function to return Breadth First Traversal of given graph.
     vector<int> bfsOfGraph(int V, vector<int> adj[]) {
-        int vis[V] = {0}; 
-        vis[0] = 1; 
+        vector<int> bfs;  //storing the traversal
+        int vis[V]={0};  //visited array for all nodes
+        vis[0]=1; //mark visited
         queue<int> q;
-        // push the initial starting node 
-        q.push(0);   
-        vector<int> bfs; // to store the bfs traversal
-        // iterate till the queue is empty 
-        while(!q.empty()) {
-           // get the topmost element in the queue 
-            int node = q.front(); 
-            q.pop(); 
-            bfs.push_back(node);  //push topmost into bfs
-            // traverse for all its neighbours and add into queue
-            for(auto it : adj[node]) {
-                // if the neighbour has previously not been visited, 
-                // store in Q and mark as visited 
-                if(!vis[it]) {
-                    vis[it] = 1; 
-                    q.push(it); 
+
+        q.push(0);
+
+        while(!q.empty()){
+            int node=q.front();
+            q.pop();
+            bfs.push_back(node);
+
+            for(auto it:adj[node]){
+                if(!vis[it]){   //agar visited nahi hai then push in queue
+                vis[it]=1;
+                q.push(it);  //pushing in queue
                 }
             }
         }
-        return bfs; 
+        return bfs;
     }
 };
    
@@ -64,3 +61,6 @@ int main()
 
     return 0;
 }
+
+
+
