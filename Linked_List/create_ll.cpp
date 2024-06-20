@@ -94,6 +94,26 @@ Node* insert_ll(Node* head,Node* ins,int pos){
     return head;
 
 }
+
+Node* reverse_ll(Node* head){
+    
+    if(head==NULL || head->next==NULL) {
+        return head;
+    }
+    Node* prev=NULL;
+    Node* curr=head;
+    Node* fwd=NULL;
+
+    while(curr!=NULL){
+
+        fwd=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=fwd;
+    }
+
+    return prev;
+}
 int main(){
 
     vector<int> arr={1,2,3,4};
@@ -104,7 +124,8 @@ int main(){
     head->next->next->next=new Node(arr[3]);
 
     print_ll(head);
-
+    cout<<"Reversed ll is" <<endl;
+    print_ll(reverse_ll(head));
     cout<<"Input the data to be inserted and the position  ";
     int pos=0,data=0;
     cin>>pos>>data;

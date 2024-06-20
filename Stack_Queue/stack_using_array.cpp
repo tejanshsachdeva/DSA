@@ -10,8 +10,8 @@ class Stack {
         int size;
 
     // behaviour
-    Stack(int size) {
-        this -> size = size;
+    Stack(int size1) {
+        size = size1;
         arr = new int[size];
         top = -1;
     }
@@ -26,9 +26,11 @@ class Stack {
         }
     }
 
-    void pop() {
+    int pop() {
         if(top >=0 ) {
+            int x=arr[top];
             top--;
+            return x;
         }
         else{
             cout << "Stack UnderFlow" << endl;
@@ -71,15 +73,15 @@ int main() {
 
     cout << st.peek() << endl;
 
-    st.pop();
+    cout << "Popped " << st.pop() <<endl;
 
     cout << st.peek() << endl;
 
-    st.pop();
+    cout << "Popped " << st.pop() <<endl;
 
     cout << st.peek() << endl;
 
-    st.pop();
+    cout << "Popped " << st.pop() <<endl;
 
     cout << st.peek() << endl;
 

@@ -37,7 +37,7 @@ class Stack{
                 return;
             }
             else{
-                newNode->next = head;
+                newNode->next = head;   //stack top is head
                 head = newNode;
             }
         }
